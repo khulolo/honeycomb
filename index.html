@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For My Honeycomb</title>
+
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: #dcdcdc;
+  font-family: monospace;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+input {
+  background: #111;
+  border: 1px solid #444;
+  padding: 10px;
+  color: #fff;
+  font-family: monospace;
+  width: 200px;
+}
+
+button {
+  background: #222;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 10px 20px;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #444;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 42px;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: 26px;
+  margin-top: 60px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+img {
+  width: 100%;
+  border-radius: 6px;
+  margin: 20px 0;
+  image-rendering: pixelated;
+}
+
+.avatar {
+  width: 140px;
+  image-rendering: pixelated;
+  margin: 20px;
+}
+
+.heart {
+  position: fixed;
+  top: -20px;
+  animation: fall 3s linear forwards;
+  color: #fff;
+}
+
+@keyframes fall {
+  from {transform: translateY(0); opacity: 1;}
+  to {transform: translateY(100vh); opacity: 0;}
+}
+</style>
+
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="lockScreen">
+  <br><br><br><br>
+  <img src="rayyan.png" class="avatar"><br>
+  <input id="password" placeholder="Enter password..." type="text" />
+  <br><br>
+  <button onclick="unlock()">Unlock</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="hidden">
+  <div class="container">
+    <h1>HAPPY BIRTHDAY</h1>
+    <div style="font-size:18px; margin-bottom:20px;">To You — My Honeycomb</div>
+
+    <img src="you.png" class="avatar">
+    <img src="rayyan.png" class="avatar">
+
+    <p>
+      December 16th. A random day for the world — but not for me.
+      It was soft and blurry and quiet, and I didn’t know yet
+      that everything was about to change.
+    </p>
+
+    <h2>Egypt</h2>
+    <p>
+      It wasn’t the place. It was you. The first time real life matched how my heart felt.
+    </p>
+    <img src="egypt.jpg">
+
+    <h2>Elevator</h2>
+    <p>
+      We look soft here. So real. A tiny moment — and still,
+      one I keep replaying.
+    </p>
+    <img src="elevator.jpg">
+
+    <h2>Facetime</h2>
+    <p>
+      This is one of my favorite versions of you: happy, alive, mine.
+    </p>
+    <img src="facetime.jpg">
+
+    <h2>A Little Piece of Me</h2>
+    <p>
+      Here’s something I’ve never said out loud:
+      loving you feels like remembering something I didn’t know I forgot.
+    </p>
+
+    <audio controls>
+      <source src="honeycomb.m4a" type="audio/mp4" />
+      Your browser does not support audio — open this on your phone.
+    </audio>
+
+    <h2>One More Thing</h2>
+    <p>
+      If I had to choose you again — I would. Every time.
+    </p>
+  </div>
+</div>
+
+<script>
+function unlock() {
+  const pass = document.getElementById("password").value.trim().toLowerCase();
+  if (pass === "august12th") {
+    document.getElementById("lockScreen").classList.add("hidden");
+    document.getElementById("mainContent").classList.remove("hidden");
+    confettiHearts();
+  }
+}
+
+// HEART CONFETTI
+function confettiHearts() {
+  let duration = 3000;
+  let end = Date.now() + duration;
+  (function frame() {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.textContent = "❤";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = (Math.random() * 16 + 14) + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 3000);
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+}
+</script>
+
+</body>
+</html>
